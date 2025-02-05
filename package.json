@@ -1,7 +1,7 @@
 {
-	"name": "package-name",
+	"name": "@edgefirst-dev/server-timing",
 	"version": "0.0.0",
-	"description": "A description of the package",
+	"description": "A helper to collect measurements for the Server-Timing header",
 	"license": "MIT",
 	"funding": ["https://github.com/sponsors/sergiodxa"],
 	"author": {
@@ -11,11 +11,11 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/sergiodxa/package"
+		"url": "https://github.com/edgefirst-dev/server-timing"
 	},
-	"homepage": "https://sergiodxa.github.io/package",
+	"homepage": "https://edgefirst-dev.github.io/server-timing",
 	"bugs": {
-		"url": "https://github.com/sergiodxa/package/issues"
+		"url": "https://github.com/edgefirst-dev/server-timing/issues"
 	},
 	"scripts": {
 		"build": "tsc",
@@ -37,13 +37,13 @@
 	"dependencies": {},
 	"peerDependencies": {},
 	"devDependencies": {
-		"@arethetypeswrong/cli": "^0.17.2",
+		"@arethetypeswrong/cli": "^0.17.3",
 		"@biomejs/biome": "^1.9.4",
 		"@total-typescript/tsconfig": "^1.0.4",
-		"@types/bun": "^1.1.14",
-		"consola": "^3.3.3",
+		"@types/bun": "^1.2.2",
+		"consola": "^3.4.0",
 		"typedoc": "^0.27.6",
-		"typedoc-plugin-mdn-links": "^4.0.6",
-		"typescript": "^5.7.2"
+		"typedoc-plugin-mdn-links": "^4.0.11",
+		"typescript": "^5.7.3"
 	}
 }

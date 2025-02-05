@@ -1,14 +1,59 @@
-# package
+# @edgefirst-dev/server-timing
 
-A template to create new packages.
+A helper to collect measurements for the Server-Timing header
 
-## What to do after cloning this repository
+## Usage
 
-1. Rename the package name in the package.json, and update any field referring to the repository.
-2. Write a description in the package.json
-3. Add your code in `src/index.ts` and your tests in `src/index.test.ts`
-4. Go to the Pages settings of the repo and configure it to use GitHub Actions
-5. Go to the Environment settings of the repo and update the `github-pages` enviroment "Deployment branches and tags" to allow tags with the `v*.*.*` format
-6. Update the `README.md` with the package description and usage instructions
-7. Update the LICENSE file with the correct license
-8. Use `bun outdated` to ensure the dependencies are up to date and update them if necessary
+Install the package:
+
+```bash
+bun add @edgefirst-dev/server-timing
+```
+
+Instantiate the collector:
+
+```ts
+import { Collector } from "@edgefirst-dev/server-timing";
+
+// You can instantiate this in the getLoadContext of Remix or React Router
+let collector = new Collector();
+```
+
+Take measurements:
+
+```ts
+collector.measure("my-metrict", "optional description", 100, async () => {
+  // do something
+});
+```
+
+Get the Server-Timing header:
+
+```ts
+let headers = new Headers();
+collector.toHeaders(headers);
+```
+
+> [!TIP]
+> Use this library in Remix or React Router applications to measure async code like HTTP requests or database queries, then collect the measurements and add them to the Server-Timing header.
+
+### Manually collect timings
+
+You can also manually collect timings:
+
+```ts
+import { ServerTiming } from "@edgefirst-dev/server-timing";
+
+let timing = new ServerTiming("name", "description");
+
+timing.measure(async () => {
+  // do something
+});
+
+collector.add(timing);
+```
+
+Each `ServerTiming` can be used once. If you want to take different measurements, create a new `ServerTiming` instance.
+
+> [!TIP]
+> Use the `Collector#measure` method to automatically create a `ServerTiming` instance and add it to the collector.
