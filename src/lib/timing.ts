@@ -1,6 +1,6 @@
 export class Timing implements PerformanceServerTiming {
-	start = 0;
-	end = 0;
+	readonly #start = performance.now();
+	#end = 0;
 
 	constructor(
 		public name: string,
@@ -8,19 +8,14 @@ export class Timing implements PerformanceServerTiming {
 	) {}
 
 	get duration() {
-		if (this.end === 0) return 0;
-		let result = this.end - this.start;
+		if (this.#end === 0) return 0;
+		let result = this.#end - this.#start;
 		if (result < 0) return 0;
 		return result;
 	}
 
-	async measure<T>(fn: Timing.MeasureFunction<T>): Promise<T> {
-		this.start = performance.now();
-		try {
-			return await fn();
-		} finally {
-			this.end = performance.now();
-		}
+	end() {
+		this.#end = performance.now();
 	}
 
 	toString() {

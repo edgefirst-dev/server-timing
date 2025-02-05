@@ -36,7 +36,10 @@ export class TimingCollector {
 			typeof descriptionOrFn === "string" ? descriptionOrFn : undefined,
 		);
 
-		return timing.measure(callback).finally(() => void this.collect(timing));
+		return callback().finally(() => {
+			timing.end();
+			this.collect(timing);
+		});
 	}
 
 	/**

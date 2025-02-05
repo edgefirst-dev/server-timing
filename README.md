@@ -44,13 +44,13 @@ You can also manually collect timings:
 ```ts
 import { Timing } from "@edgefirst-dev/server-timing";
 
+// measures are taken from the time this is created
 let timing = new Timing("name", "description");
 
-timing.measure(async () => {
-  // do something
-});
+await doSomething(); // do something
 
-collector.add(timing);
+timing.end(); // end the measurement
+collector.add(timing); // add the timing to the collector
 ```
 
 Each `Timing` can be used once. If you want to take different measurements, create a new `Timing` instance.
