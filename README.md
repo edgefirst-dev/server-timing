@@ -10,13 +10,13 @@ Install the package:
 bun add @edgefirst-dev/server-timing
 ```
 
-Instantiate the collector:
+Instantiate the timing collector:
 
 ```ts
-import { Collector } from "@edgefirst-dev/server-timing";
+import { TimingCollector } from "@edgefirst-dev/server-timing";
 
 // You can instantiate this in the getLoadContext of Remix or React Router
-let collector = new Collector();
+let collector = new TimingCollector();
 ```
 
 Take measurements:
@@ -42,9 +42,9 @@ collector.toHeaders(headers);
 You can also manually collect timings:
 
 ```ts
-import { ServerTiming } from "@edgefirst-dev/server-timing";
+import { Timing } from "@edgefirst-dev/server-timing";
 
-let timing = new ServerTiming("name", "description");
+let timing = new Timing("name", "description");
 
 timing.measure(async () => {
   // do something
@@ -53,7 +53,7 @@ timing.measure(async () => {
 collector.add(timing);
 ```
 
-Each `ServerTiming` can be used once. If you want to take different measurements, create a new `ServerTiming` instance.
+Each `Timing` can be used once. If you want to take different measurements, create a new `Timing` instance.
 
 > [!TIP]
-> Use the `Collector#measure` method to automatically create a `ServerTiming` instance and add it to the collector.
+> Use the `Collector#measure` method to automatically create a `Timing` instance and add it to the collector.

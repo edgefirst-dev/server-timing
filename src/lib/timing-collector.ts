@@ -1,4 +1,4 @@
-import { Timing } from "./server-timing.js";
+import { Timing } from "./timing.js";
 
 export class TimingCollector {
 	collection = new Set<Timing>();
